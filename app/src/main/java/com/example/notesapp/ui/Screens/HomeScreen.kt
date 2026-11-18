@@ -44,15 +44,7 @@ fun HomeScreen(
     onNoteClick:(Int) ->Unit,
 ){
 
-    val notes by viewModel.notes.collectAsState(
-        initial = listOf<Note>(
-            Note(id=0,title="UI Concept worth existing",content="Note1"),
-            Note(id=1,title="Book Review : The Design of everyday Things by Don Norman",content="Note2"),
-            Note(id=2,title="Anime produce by ufotable",content="Note3"),
-            Note(id=3,title="Mangas planned to read",content="Note4"),
-        )
-
-    )
+    val notes by viewModel.notes.collectAsState()
 
     val searchQuery by viewModel.searchQuery.collectAsState(
         initial = ""

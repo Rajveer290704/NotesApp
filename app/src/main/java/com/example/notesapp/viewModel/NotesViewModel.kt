@@ -32,8 +32,8 @@ class NotesViewModel(
         repository.getFilteredNotes()
     }
 
-    fun getNotesById(id: Int){
-        repository.getNotesById(id)
+    fun getNotesById(id: Int): Note? {
+        return repository.getNotesById(id)
     }
 
 }

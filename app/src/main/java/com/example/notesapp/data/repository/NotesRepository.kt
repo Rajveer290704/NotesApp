@@ -9,7 +9,14 @@ import kotlinx.coroutines.flow.update
 
 class NotesRepository {
     //Maintain List of Notes
-    private val _notes = MutableStateFlow<List<Note>>(emptyList())
+    private val _notes = MutableStateFlow<List<Note>>(
+        listOf(
+            Note(id=0,title="UI Concept worth existing",content="Note1"),
+            Note(id=1,title="Book Review : The Design of everyday Things by Don Norman",content="Note2"),
+            Note(id=2,title="Anime produce by ufotable",content="Note3"),
+            Note(id=3,title="Mangas planned to read",content="Note4"),
+        )
+    )
     val notes: StateFlow<List<Note>> = _notes.asStateFlow()
 
 
@@ -21,8 +28,10 @@ class NotesRepository {
     //Add Notes
     fun addNote(title:String,content: String){
 
-        val newNote = Note(title=title, content = content)
+
         _notes.update {currentNote ->
+            val newId = (currentNote.maxOfOrNull { it.id } ?: -1) + 1
+            val newNote = Note(id=newId,title=title, content = content)
             currentNote + newNote
         }
     }
